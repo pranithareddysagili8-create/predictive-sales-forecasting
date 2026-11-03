@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}Business Analytics | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Business Analytics &amp; Sales Insights</h1>
+        <p class="page-desc">Comprehensive breakdown of sales trends, product revenues, category shares, and regional distributions.</p>
+    </div>
+    <div class="header-actions">
+        <!-- Interval Filter Toggle (Daily vs Monthly) -->
+        <form method="GET" action="{{ url_for('analytics_page') }}" style="display: flex; gap: 0.4rem; align-items: center;">
+            <label for="freq" style="font-size: 0.88rem; font-weight: 600; color: #475569;">Granularity:</label>
+            <select name="freq" id="freq" class="form-select" style="width: auto; padding: 0.45rem 0.8rem;" onchange="this.form.submit()">
+                <option value="D" {% if freq == 'D' %}selected{% endif %}>Daily Trends</option>
+                <option value="M" {% if freq == 'M' %}selected{% endif %}>Monthly Trends</option>
+            </select>
+        </form>
+        <a href="{{ url_for('forecasting_page') }}" class="btn btn-primary">
+            <span>🔮</span> Proceed to Forecasting &rarr;
+        </a>
+    </div>
+</div>
+
+<!-- Sales Revenue Trend Chart -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <span>📈</span> Total Revenue Over Time ({{ 'Monthly Aggregation' if freq == 'M' else 'Daily Aggregation' }})
+        </h2>
+        <span class="badge badge-primary">{{ df_agg|length }} Timesteps Recorded</span>
+    </div>
+    <div class="card-body">
+        {% if trend_chart %}
+            <div class="chart-wrapper">
+                <img src="data:image/png;base64,{{ trend_chart }}" alt="Sales Trend" class="chart-img">
+            </div>
+        {% else %}
+            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No trend data available.</p>
+        {% endif %}
+
+        <!-- Quick Summary Stats Bar -->
+        {% if stats %}
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+            <div style="text-align: center;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Mean Revenue / {{ 'Month' if freq == 'M' else 'Day' }}</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-top: 0.2rem;">${{ "{:,.2f}".format(stats.mean) }}</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Median Revenue</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-top: 0.2rem;">${{ "{:,.2f}".format(stats.median) }}</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Peak Highest Revenue</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #059669; margin-top: 0.2rem;">${{ "{:,.2f}".format(stats.max) }}</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Lowest Revenue</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #dc2626; margin-top: 0.2rem;">${{ "{:,.2f}".format(stats.min) }}</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Standard Deviation</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #4f46e5; margin-top: 0.2rem;">${{ "{:,.2f}".format(stats.std) }}</div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Product & Category Breakdown Visualizations -->
+<div class="grid-2">
+    <!-- Top Best-Selling Products Chart -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">🏆 Top Best-Selling Products</h2>
+            <span class="badge badge-success">Ranked by Revenue</span>
+        </div>
+        <div class="card-body">
+            {% if product_chart %}
+                <div class="chart-wrapper">
+                    <img src="data:image/png;base64,{{ product_chart }}" alt="Top Products Chart" class="chart-img">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Category Breakdown Chart -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">🏷️ Category-Wise Revenue Share</h2>
+            <span class="badge badge-primary">Portfolio Share</span>
+        </div>
+        <div class="card-body">
+            {% if category_chart %}
+                <div class="chart-wrapper">
+                    <img src="data:image/png;base64,{{ category_chart }}" alt="Category Chart" class="chart-img">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Detailed Analytics Tables -->
+<div class="grid-2">
+    <!-- Product Performance Table -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">📦 Product Performance Breakdown</h2>
+            <span class="badge badge-gray">Top 10 SKUs</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Units Sold</th>
+                            <th>Total Revenue</th>
+                            <th>Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in product_rows %}
+                        <tr>
+                            <td><strong>{{ row.product_name }}</strong></td>
+                            <td><span class="badge badge-gray">{{ row.category }}</span></td>
+                            <td>{{ "{:,}".format(row.quantity) }}</td>
+                            <td style="font-weight: 600; color: #047857;">${{ "{:,.2f}".format(row.revenue) }}</td>
+                            <td>{{ row.revenue_share }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category & Regional Breakdown Table -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">🌐 Category &amp; Regional Performance</h2>
+        </div>
+        <div class="card-body">
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 0.5rem;">
+                Category Breakdown
+            </h4>
+            <div class="table-responsive" style="margin-bottom: 1.5rem;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Units Sold</th>
+                            <th>Revenue</th>
+                            <th>Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in category_rows %}
+                        <tr>
+                            <td><strong>{{ row.category }}</strong></td>
+                            <td>{{ "{:,}".format(row.quantity) }}</td>
+                            <td style="font-weight: 600; color: #047857;">${{ "{:,.2f}".format(row.revenue) }}</td>
+                            <td>{{ row.revenue_share }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if region_rows %}
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 0.5rem;">
+                Regional Territory Distribution
+            </h4>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Region</th>
+                            <th>Orders</th>
+                            <th>Units Sold</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in region_rows %}
+                        <tr>
+                            <td><strong>{{ row.region }}</strong></td>
+                            <td>{{ row.order_count }}</td>
+                            <td>{{ "{:,}".format(row.quantity) }}</td>
+                            <td style="font-weight: 600; color: #047857;">${{ "{:,.2f}".format(row.revenue) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

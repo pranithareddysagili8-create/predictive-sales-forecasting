@@ -1,0 +1,617 @@
+sale_id,product_id,product_name,category,sale_date,quantity,unit_price,region
+1,102,Wireless Mouse,Computer Accessories,2024-01-01,6,25.0,South
+2,104,27-inch 4K Monitor,Electronics,2024-01-01,2,320.0,North
+3,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-01,10,24.0,North
+4,107,Adjustable Standing Desk,Furniture,2024-01-02,1,340.0,North
+5,102,Wireless Mouse,Computer Accessories,2024-01-02,5,25.0,Central
+6,110,Laser Multifunction Printer,Office Supplies,2024-01-02,1,195.0,Central
+7,112,Laptop Cooling Pad,Computer Accessories,2024-01-03,10,35.0,West
+8,108,Noise Cancelling Headphones,Audio,2024-01-04,5,175.0,East
+9,103,USB-C Multiport Hub,Computer Accessories,2024-01-05,8,45.0,East
+10,103,USB-C Multiport Hub,Computer Accessories,2024-01-06,7,45.0,North
+11,102,Wireless Mouse,Computer Accessories,2024-01-06,3,25.0,East
+12,106,Ergonomic Office Chair,Furniture,2024-01-06,5,210.0,East
+13,112,Laptop Cooling Pad,Computer Accessories,2024-01-07,10,35.0,North
+14,107,Adjustable Standing Desk,Furniture,2024-01-07,1,340.0,Central
+15,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-08,7,24.0,Central
+16,104,27-inch 4K Monitor,Electronics,2024-01-08,6,320.0,North
+17,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-09,6,24.0,North
+18,102,Wireless Mouse,Computer Accessories,2024-01-10,6,25.0,West
+19,106,Ergonomic Office Chair,Furniture,2024-01-11,2,210.0,East
+20,106,Ergonomic Office Chair,Furniture,2024-01-11,2,210.0,East
+21,112,Laptop Cooling Pad,Computer Accessories,2024-01-11,3,35.0,Central
+22,103,USB-C Multiport Hub,Computer Accessories,2024-01-12,5,45.0,South
+23,108,Noise Cancelling Headphones,Audio,2024-01-12,4,175.0,East
+24,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-12,10,24.0,South
+25,106,Ergonomic Office Chair,Furniture,2024-01-13,1,210.0,South
+26,101,Mechanical Keyboard,Computer Accessories,2024-01-13,3,85.0,West
+27,105,HD Pro Webcam,Electronics,2024-01-13,1,60.0,South
+28,110,Laser Multifunction Printer,Office Supplies,2024-01-13,6,195.0,East
+29,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-14,8,24.0,West
+30,103,USB-C Multiport Hub,Computer Accessories,2024-01-14,4,45.0,South
+31,109,Portable Bluetooth Speaker,Audio,2024-01-15,5,55.0,East
+32,112,Laptop Cooling Pad,Computer Accessories,2024-01-15,8,35.0,Central
+33,107,Adjustable Standing Desk,Furniture,2024-01-15,3,340.0,South
+34,109,Portable Bluetooth Speaker,Audio,2024-01-16,4,55.0,North
+35,102,Wireless Mouse,Computer Accessories,2024-01-17,4,25.0,West
+36,102,Wireless Mouse,Computer Accessories,2024-01-18,8,25.0,Central
+37,108,Noise Cancelling Headphones,Audio,2024-01-18,5,175.0,East
+38,109,Portable Bluetooth Speaker,Audio,2024-01-18,1,55.0,North
+39,109,Portable Bluetooth Speaker,Audio,2024-01-19,3,55.0,East
+40,102,Wireless Mouse,Computer Accessories,2024-01-19,8,25.0,South
+41,108,Noise Cancelling Headphones,Audio,2024-01-19,1,175.0,East
+42,103,USB-C Multiport Hub,Computer Accessories,2024-01-20,3,45.0,East
+43,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-20,5,24.0,South
+44,106,Ergonomic Office Chair,Furniture,2024-01-20,2,210.0,Central
+45,109,Portable Bluetooth Speaker,Audio,2024-01-20,1,55.0,Central
+46,108,Noise Cancelling Headphones,Audio,2024-01-21,1,175.0,North
+47,106,Ergonomic Office Chair,Furniture,2024-01-21,3,210.0,South
+48,101,Mechanical Keyboard,Computer Accessories,2024-01-21,2,85.0,Central
+49,102,Wireless Mouse,Computer Accessories,2024-01-22,9,25.0,North
+50,103,USB-C Multiport Hub,Computer Accessories,2024-01-23,9,45.0,Central
+51,103,USB-C Multiport Hub,Computer Accessories,2024-01-23,10,45.0,Central
+52,107,Adjustable Standing Desk,Furniture,2024-01-23,2,340.0,Central
+53,112,Laptop Cooling Pad,Computer Accessories,2024-01-24,6,35.0,West
+54,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-24,7,24.0,West
+55,109,Portable Bluetooth Speaker,Audio,2024-01-24,4,55.0,North
+56,104,27-inch 4K Monitor,Electronics,2024-01-25,1,320.0,East
+57,110,Laser Multifunction Printer,Office Supplies,2024-01-26,5,195.0,South
+58,104,27-inch 4K Monitor,Electronics,2024-01-27,1,320.0,North
+59,112,Laptop Cooling Pad,Computer Accessories,2024-01-27,2,35.0,South
+60,102,Wireless Mouse,Computer Accessories,2024-01-27,7,25.0,North
+61,109,Portable Bluetooth Speaker,Audio,2024-01-27,2,55.0,East
+62,108,Noise Cancelling Headphones,Audio,2024-01-28,2,175.0,Central
+63,103,USB-C Multiport Hub,Computer Accessories,2024-01-28,9,45.0,South
+64,108,Noise Cancelling Headphones,Audio,2024-01-28,4,175.0,South
+65,102,Wireless Mouse,Computer Accessories,2024-01-28,8,25.0,East
+66,107,Adjustable Standing Desk,Furniture,2024-01-29,4,340.0,North
+67,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-01-29,3,24.0,North
+68,112,Laptop Cooling Pad,Computer Accessories,2024-01-30,3,35.0,South
+69,104,27-inch 4K Monitor,Electronics,2024-01-30,2,320.0,Central
+70,103,USB-C Multiport Hub,Computer Accessories,2024-01-31,4,45.0,East
+71,108,Noise Cancelling Headphones,Audio,2024-01-31,2,175.0,North
+72,109,Portable Bluetooth Speaker,Audio,2024-02-01,1,55.0,North
+73,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-02-01,2,24.0,North
+74,103,USB-C Multiport Hub,Computer Accessories,2024-02-02,9,45.0,West
+75,107,Adjustable Standing Desk,Furniture,2024-02-03,1,340.0,South
+76,107,Adjustable Standing Desk,Furniture,2024-02-03,1,340.0,West
+77,108,Noise Cancelling Headphones,Audio,2024-02-04,3,175.0,West
+78,112,Laptop Cooling Pad,Computer Accessories,2024-02-04,10,35.0,West
+79,103,USB-C Multiport Hub,Computer Accessories,2024-02-04,6,45.0,South
+80,110,Laser Multifunction Printer,Office Supplies,2024-02-05,6,195.0,Central
+81,112,Laptop Cooling Pad,Computer Accessories,2024-02-06,2,35.0,North
+82,108,Noise Cancelling Headphones,Audio,2024-02-07,5,175.0,Central
+83,103,USB-C Multiport Hub,Computer Accessories,2024-02-07,10,45.0,North
+84,103,USB-C Multiport Hub,Computer Accessories,2024-02-07,3,45.0,South
+85,102,Wireless Mouse,Computer Accessories,2024-02-08,5,25.0,Central
+86,110,Laser Multifunction Printer,Office Supplies,2024-02-08,1,195.0,Central
+87,107,Adjustable Standing Desk,Furniture,2024-02-09,6,340.0,Central
+88,109,Portable Bluetooth Speaker,Audio,2024-02-10,3,55.0,East
+89,104,27-inch 4K Monitor,Electronics,2024-02-10,6,320.0,East
+90,104,27-inch 4K Monitor,Electronics,2024-02-10,3,320.0,West
+91,103,USB-C Multiport Hub,Computer Accessories,2024-02-10,6,45.0,West
+92,102,Wireless Mouse,Computer Accessories,2024-02-11,9,25.0,Central
+93,110,Laser Multifunction Printer,Office Supplies,2024-02-11,1,195.0,North
+94,109,Portable Bluetooth Speaker,Audio,2024-02-11,2,55.0,Central
+95,103,USB-C Multiport Hub,Computer Accessories,2024-02-12,3,45.0,South
+96,106,Ergonomic Office Chair,Furniture,2024-02-12,3,210.0,South
+97,109,Portable Bluetooth Speaker,Audio,2024-02-13,6,55.0,East
+98,110,Laser Multifunction Printer,Office Supplies,2024-02-13,6,195.0,Central
+99,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-02-14,6,24.0,North
+100,105,HD Pro Webcam,Electronics,2024-02-15,1,60.0,North
+101,109,Portable Bluetooth Speaker,Audio,2024-02-16,2,55.0,East
+102,105,HD Pro Webcam,Electronics,2024-02-16,5,60.0,South
+103,112,Laptop Cooling Pad,Computer Accessories,2024-02-16,5,35.0,East
+104,108,Noise Cancelling Headphones,Audio,2024-02-17,3,175.0,North
+105,102,Wireless Mouse,Computer Accessories,2024-02-17,8,25.0,East
+106,101,Mechanical Keyboard,Computer Accessories,2024-02-17,1,85.0,East
+107,103,USB-C Multiport Hub,Computer Accessories,2024-02-17,6,45.0,South
+108,108,Noise Cancelling Headphones,Audio,2024-02-18,5,175.0,West
+109,109,Portable Bluetooth Speaker,Audio,2024-02-18,1,55.0,North
+110,102,Wireless Mouse,Computer Accessories,2024-02-18,4,25.0,Central
+111,101,Mechanical Keyboard,Computer Accessories,2024-02-18,3,85.0,Central
+112,103,USB-C Multiport Hub,Computer Accessories,2024-02-19,4,45.0,North
+113,105,HD Pro Webcam,Electronics,2024-02-19,3,60.0,North
+114,106,Ergonomic Office Chair,Furniture,2024-02-19,2,210.0,South
+115,102,Wireless Mouse,Computer Accessories,2024-02-20,10,25.0,West
+116,110,Laser Multifunction Printer,Office Supplies,2024-02-20,6,195.0,South
+117,104,27-inch 4K Monitor,Electronics,2024-02-20,2,320.0,South
+118,101,Mechanical Keyboard,Computer Accessories,2024-02-21,2,85.0,East
+119,107,Adjustable Standing Desk,Furniture,2024-02-21,6,340.0,South
+120,103,USB-C Multiport Hub,Computer Accessories,2024-02-22,3,45.0,West
+121,101,Mechanical Keyboard,Computer Accessories,2024-02-22,4,85.0,South
+122,108,Noise Cancelling Headphones,Audio,2024-02-23,3,175.0,East
+123,104,27-inch 4K Monitor,Electronics,2024-02-24,1,320.0,South
+124,107,Adjustable Standing Desk,Furniture,2024-02-24,3,340.0,East
+125,105,HD Pro Webcam,Electronics,2024-02-25,3,60.0,Central
+126,107,Adjustable Standing Desk,Furniture,2024-02-25,6,340.0,Central
+127,101,Mechanical Keyboard,Computer Accessories,2024-02-26,1,85.0,East
+128,103,USB-C Multiport Hub,Computer Accessories,2024-02-26,6,45.0,North
+129,110,Laser Multifunction Printer,Office Supplies,2024-02-27,4,195.0,East
+130,106,Ergonomic Office Chair,Furniture,2024-02-28,4,210.0,Central
+131,109,Portable Bluetooth Speaker,Audio,2024-02-28,1,55.0,West
+132,110,Laser Multifunction Printer,Office Supplies,2024-02-28,2,195.0,East
+133,112,Laptop Cooling Pad,Computer Accessories,2024-02-29,2,35.0,Central
+134,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-01,5,24.0,East
+135,107,Adjustable Standing Desk,Furniture,2024-03-01,1,340.0,East
+136,110,Laser Multifunction Printer,Office Supplies,2024-03-01,3,195.0,North
+137,105,HD Pro Webcam,Electronics,2024-03-02,5,60.0,East
+138,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-02,7,24.0,West
+139,112,Laptop Cooling Pad,Computer Accessories,2024-03-02,10,35.0,South
+140,104,27-inch 4K Monitor,Electronics,2024-03-02,4,320.0,West
+141,112,Laptop Cooling Pad,Computer Accessories,2024-03-03,6,35.0,West
+142,109,Portable Bluetooth Speaker,Audio,2024-03-03,1,55.0,East
+143,105,HD Pro Webcam,Electronics,2024-03-03,2,60.0,West
+144,110,Laser Multifunction Printer,Office Supplies,2024-03-03,5,195.0,East
+145,108,Noise Cancelling Headphones,Audio,2024-03-04,4,175.0,South
+146,109,Portable Bluetooth Speaker,Audio,2024-03-04,4,55.0,South
+147,102,Wireless Mouse,Computer Accessories,2024-03-05,10,25.0,Central
+148,106,Ergonomic Office Chair,Furniture,2024-03-05,1,210.0,South
+149,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-05,5,24.0,South
+150,101,Mechanical Keyboard,Computer Accessories,2024-03-06,1,85.0,South
+151,110,Laser Multifunction Printer,Office Supplies,2024-03-07,1,195.0,West
+152,107,Adjustable Standing Desk,Furniture,2024-03-07,6,340.0,Central
+153,112,Laptop Cooling Pad,Computer Accessories,2024-03-08,8,35.0,West
+154,104,27-inch 4K Monitor,Electronics,2024-03-09,2,320.0,North
+155,102,Wireless Mouse,Computer Accessories,2024-03-09,5,25.0,South
+156,112,Laptop Cooling Pad,Computer Accessories,2024-03-09,9,35.0,North
+157,104,27-inch 4K Monitor,Electronics,2024-03-10,1,320.0,West
+158,103,USB-C Multiport Hub,Computer Accessories,2024-03-10,10,45.0,Central
+159,110,Laser Multifunction Printer,Office Supplies,2024-03-10,3,195.0,West
+160,110,Laser Multifunction Printer,Office Supplies,2024-03-10,6,195.0,Central
+161,109,Portable Bluetooth Speaker,Audio,2024-03-11,4,55.0,South
+162,112,Laptop Cooling Pad,Computer Accessories,2024-03-11,9,35.0,East
+163,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-12,10,24.0,West
+164,104,27-inch 4K Monitor,Electronics,2024-03-13,3,320.0,West
+165,102,Wireless Mouse,Computer Accessories,2024-03-13,6,25.0,South
+166,105,HD Pro Webcam,Electronics,2024-03-13,3,60.0,East
+167,102,Wireless Mouse,Computer Accessories,2024-03-14,4,25.0,South
+168,107,Adjustable Standing Desk,Furniture,2024-03-14,6,340.0,South
+169,112,Laptop Cooling Pad,Computer Accessories,2024-03-14,3,35.0,West
+170,106,Ergonomic Office Chair,Furniture,2024-03-15,5,210.0,West
+171,107,Adjustable Standing Desk,Furniture,2024-03-15,1,340.0,South
+172,107,Adjustable Standing Desk,Furniture,2024-03-16,5,340.0,North
+173,110,Laser Multifunction Printer,Office Supplies,2024-03-16,4,195.0,West
+174,101,Mechanical Keyboard,Computer Accessories,2024-03-16,3,85.0,East
+175,107,Adjustable Standing Desk,Furniture,2024-03-17,5,340.0,Central
+176,110,Laser Multifunction Printer,Office Supplies,2024-03-17,2,195.0,West
+177,104,27-inch 4K Monitor,Electronics,2024-03-17,3,320.0,West
+178,101,Mechanical Keyboard,Computer Accessories,2024-03-18,4,85.0,East
+179,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-18,8,24.0,South
+180,103,USB-C Multiport Hub,Computer Accessories,2024-03-19,10,45.0,North
+181,107,Adjustable Standing Desk,Furniture,2024-03-19,5,340.0,Central
+182,101,Mechanical Keyboard,Computer Accessories,2024-03-20,1,85.0,West
+183,103,USB-C Multiport Hub,Computer Accessories,2024-03-20,4,45.0,North
+184,105,HD Pro Webcam,Electronics,2024-03-20,4,60.0,East
+185,108,Noise Cancelling Headphones,Audio,2024-03-21,3,175.0,East
+186,105,HD Pro Webcam,Electronics,2024-03-22,4,60.0,East
+187,102,Wireless Mouse,Computer Accessories,2024-03-22,2,25.0,Central
+188,106,Ergonomic Office Chair,Furniture,2024-03-23,2,210.0,North
+189,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-03-23,2,24.0,South
+190,101,Mechanical Keyboard,Computer Accessories,2024-03-24,5,85.0,South
+191,104,27-inch 4K Monitor,Electronics,2024-03-24,2,320.0,West
+192,102,Wireless Mouse,Computer Accessories,2024-03-25,5,25.0,West
+193,112,Laptop Cooling Pad,Computer Accessories,2024-03-25,7,35.0,South
+194,110,Laser Multifunction Printer,Office Supplies,2024-03-25,5,195.0,North
+195,105,HD Pro Webcam,Electronics,2024-03-26,1,60.0,Central
+196,105,HD Pro Webcam,Electronics,2024-03-27,5,60.0,West
+197,112,Laptop Cooling Pad,Computer Accessories,2024-03-28,3,35.0,Central
+198,112,Laptop Cooling Pad,Computer Accessories,2024-03-28,5,35.0,North
+199,105,HD Pro Webcam,Electronics,2024-03-29,6,60.0,Central
+200,102,Wireless Mouse,Computer Accessories,2024-03-29,2,25.0,East
+201,109,Portable Bluetooth Speaker,Audio,2024-03-29,4,55.0,East
+202,109,Portable Bluetooth Speaker,Audio,2024-03-30,6,55.0,East
+203,101,Mechanical Keyboard,Computer Accessories,2024-03-30,4,85.0,West
+204,107,Adjustable Standing Desk,Furniture,2024-03-31,3,340.0,West
+205,112,Laptop Cooling Pad,Computer Accessories,2024-03-31,8,35.0,South
+206,109,Portable Bluetooth Speaker,Audio,2024-04-01,6,55.0,East
+207,110,Laser Multifunction Printer,Office Supplies,2024-04-01,5,195.0,West
+208,108,Noise Cancelling Headphones,Audio,2024-04-01,4,175.0,Central
+209,106,Ergonomic Office Chair,Furniture,2024-04-02,2,210.0,North
+210,105,HD Pro Webcam,Electronics,2024-04-02,4,60.0,South
+211,110,Laser Multifunction Printer,Office Supplies,2024-04-03,5,195.0,West
+212,106,Ergonomic Office Chair,Furniture,2024-04-03,1,210.0,West
+213,103,USB-C Multiport Hub,Computer Accessories,2024-04-04,5,45.0,East
+214,105,HD Pro Webcam,Electronics,2024-04-04,3,60.0,East
+215,112,Laptop Cooling Pad,Computer Accessories,2024-04-05,10,35.0,North
+216,109,Portable Bluetooth Speaker,Audio,2024-04-05,2,55.0,North
+217,104,27-inch 4K Monitor,Electronics,2024-04-05,6,320.0,West
+218,109,Portable Bluetooth Speaker,Audio,2024-04-06,2,55.0,West
+219,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-04-06,9,24.0,West
+220,101,Mechanical Keyboard,Computer Accessories,2024-04-06,1,85.0,East
+221,107,Adjustable Standing Desk,Furniture,2024-04-07,6,340.0,South
+222,105,HD Pro Webcam,Electronics,2024-04-07,6,60.0,Central
+223,108,Noise Cancelling Headphones,Audio,2024-04-08,5,175.0,Central
+224,106,Ergonomic Office Chair,Furniture,2024-04-08,4,210.0,Central
+225,106,Ergonomic Office Chair,Furniture,2024-04-09,6,210.0,West
+226,105,HD Pro Webcam,Electronics,2024-04-09,3,60.0,East
+227,102,Wireless Mouse,Computer Accessories,2024-04-10,5,25.0,East
+228,112,Laptop Cooling Pad,Computer Accessories,2024-04-11,4,35.0,South
+229,112,Laptop Cooling Pad,Computer Accessories,2024-04-12,6,35.0,Central
+230,110,Laser Multifunction Printer,Office Supplies,2024-04-13,3,195.0,North
+231,104,27-inch 4K Monitor,Electronics,2024-04-13,3,320.0,South
+232,106,Ergonomic Office Chair,Furniture,2024-04-13,2,210.0,East
+233,101,Mechanical Keyboard,Computer Accessories,2024-04-13,6,85.0,Central
+234,105,HD Pro Webcam,Electronics,2024-04-14,1,60.0,North
+235,109,Portable Bluetooth Speaker,Audio,2024-04-14,3,55.0,South
+236,108,Noise Cancelling Headphones,Audio,2024-04-15,1,175.0,North
+237,110,Laser Multifunction Printer,Office Supplies,2024-04-15,3,195.0,West
+238,108,Noise Cancelling Headphones,Audio,2024-04-15,4,175.0,East
+239,101,Mechanical Keyboard,Computer Accessories,2024-04-16,3,85.0,West
+240,102,Wireless Mouse,Computer Accessories,2024-04-17,9,25.0,North
+241,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-04-18,2,24.0,South
+242,103,USB-C Multiport Hub,Computer Accessories,2024-04-18,6,45.0,North
+243,104,27-inch 4K Monitor,Electronics,2024-04-18,1,320.0,Central
+244,110,Laser Multifunction Printer,Office Supplies,2024-04-19,5,195.0,Central
+245,104,27-inch 4K Monitor,Electronics,2024-04-19,5,320.0,West
+246,108,Noise Cancelling Headphones,Audio,2024-04-20,3,175.0,Central
+247,107,Adjustable Standing Desk,Furniture,2024-04-20,3,340.0,Central
+248,110,Laser Multifunction Printer,Office Supplies,2024-04-20,1,195.0,Central
+249,102,Wireless Mouse,Computer Accessories,2024-04-21,5,25.0,East
+250,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-04-21,4,24.0,South
+251,103,USB-C Multiport Hub,Computer Accessories,2024-04-21,3,45.0,South
+252,101,Mechanical Keyboard,Computer Accessories,2024-04-21,4,85.0,West
+253,110,Laser Multifunction Printer,Office Supplies,2024-04-22,4,195.0,East
+254,101,Mechanical Keyboard,Computer Accessories,2024-04-22,2,85.0,East
+255,112,Laptop Cooling Pad,Computer Accessories,2024-04-22,9,35.0,North
+256,104,27-inch 4K Monitor,Electronics,2024-04-23,3,320.0,Central
+257,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-04-23,8,24.0,North
+258,109,Portable Bluetooth Speaker,Audio,2024-04-23,2,55.0,South
+259,103,USB-C Multiport Hub,Computer Accessories,2024-04-24,2,45.0,South
+260,105,HD Pro Webcam,Electronics,2024-04-24,5,60.0,Central
+261,108,Noise Cancelling Headphones,Audio,2024-04-25,1,175.0,West
+262,112,Laptop Cooling Pad,Computer Accessories,2024-04-25,8,35.0,East
+263,109,Portable Bluetooth Speaker,Audio,2024-04-26,4,55.0,West
+264,102,Wireless Mouse,Computer Accessories,2024-04-26,2,25.0,West
+265,112,Laptop Cooling Pad,Computer Accessories,2024-04-26,6,35.0,North
+266,104,27-inch 4K Monitor,Electronics,2024-04-27,6,320.0,Central
+267,110,Laser Multifunction Printer,Office Supplies,2024-04-27,1,195.0,East
+268,101,Mechanical Keyboard,Computer Accessories,2024-04-28,2,85.0,West
+269,109,Portable Bluetooth Speaker,Audio,2024-04-28,6,55.0,West
+270,105,HD Pro Webcam,Electronics,2024-04-28,2,60.0,Central
+271,107,Adjustable Standing Desk,Furniture,2024-04-28,6,340.0,West
+272,108,Noise Cancelling Headphones,Audio,2024-04-29,3,175.0,West
+273,106,Ergonomic Office Chair,Furniture,2024-04-30,6,210.0,North
+274,103,USB-C Multiport Hub,Computer Accessories,2024-04-30,8,45.0,West
+275,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-01,10,24.0,North
+276,108,Noise Cancelling Headphones,Audio,2024-05-01,1,175.0,East
+277,106,Ergonomic Office Chair,Furniture,2024-05-02,1,210.0,West
+278,109,Portable Bluetooth Speaker,Audio,2024-05-02,1,55.0,Central
+279,107,Adjustable Standing Desk,Furniture,2024-05-03,1,340.0,South
+280,109,Portable Bluetooth Speaker,Audio,2024-05-03,3,55.0,Central
+281,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-04,2,24.0,South
+282,105,HD Pro Webcam,Electronics,2024-05-04,5,60.0,South
+283,105,HD Pro Webcam,Electronics,2024-05-04,4,60.0,West
+284,101,Mechanical Keyboard,Computer Accessories,2024-05-05,6,85.0,Central
+285,104,27-inch 4K Monitor,Electronics,2024-05-05,6,320.0,South
+286,109,Portable Bluetooth Speaker,Audio,2024-05-06,1,55.0,Central
+287,107,Adjustable Standing Desk,Furniture,2024-05-06,1,340.0,South
+288,108,Noise Cancelling Headphones,Audio,2024-05-07,1,175.0,South
+289,112,Laptop Cooling Pad,Computer Accessories,2024-05-08,10,35.0,East
+290,107,Adjustable Standing Desk,Furniture,2024-05-08,4,340.0,West
+291,108,Noise Cancelling Headphones,Audio,2024-05-09,5,175.0,South
+292,104,27-inch 4K Monitor,Electronics,2024-05-10,5,320.0,Central
+293,112,Laptop Cooling Pad,Computer Accessories,2024-05-10,3,35.0,East
+294,106,Ergonomic Office Chair,Furniture,2024-05-11,5,210.0,East
+295,101,Mechanical Keyboard,Computer Accessories,2024-05-11,3,85.0,East
+296,110,Laser Multifunction Printer,Office Supplies,2024-05-11,5,195.0,West
+297,108,Noise Cancelling Headphones,Audio,2024-05-12,5,175.0,West
+298,106,Ergonomic Office Chair,Furniture,2024-05-12,3,210.0,Central
+299,107,Adjustable Standing Desk,Furniture,2024-05-13,4,340.0,East
+300,104,27-inch 4K Monitor,Electronics,2024-05-13,6,320.0,South
+301,110,Laser Multifunction Printer,Office Supplies,2024-05-13,4,195.0,South
+302,101,Mechanical Keyboard,Computer Accessories,2024-05-14,3,85.0,West
+303,112,Laptop Cooling Pad,Computer Accessories,2024-05-14,8,35.0,South
+304,101,Mechanical Keyboard,Computer Accessories,2024-05-15,2,85.0,Central
+305,110,Laser Multifunction Printer,Office Supplies,2024-05-15,3,195.0,North
+306,102,Wireless Mouse,Computer Accessories,2024-05-16,9,25.0,North
+307,112,Laptop Cooling Pad,Computer Accessories,2024-05-16,8,35.0,South
+308,108,Noise Cancelling Headphones,Audio,2024-05-17,3,175.0,East
+309,112,Laptop Cooling Pad,Computer Accessories,2024-05-18,3,35.0,East
+310,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-18,8,24.0,East
+311,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-18,9,24.0,Central
+312,101,Mechanical Keyboard,Computer Accessories,2024-05-18,5,85.0,North
+313,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-19,6,24.0,South
+314,112,Laptop Cooling Pad,Computer Accessories,2024-05-19,8,35.0,North
+315,112,Laptop Cooling Pad,Computer Accessories,2024-05-20,9,35.0,South
+316,112,Laptop Cooling Pad,Computer Accessories,2024-05-20,2,35.0,North
+317,106,Ergonomic Office Chair,Furniture,2024-05-20,1,210.0,East
+318,106,Ergonomic Office Chair,Furniture,2024-05-21,4,210.0,South
+319,104,27-inch 4K Monitor,Electronics,2024-05-21,5,320.0,West
+320,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-22,4,24.0,South
+321,102,Wireless Mouse,Computer Accessories,2024-05-22,8,25.0,Central
+322,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-22,9,24.0,Central
+323,104,27-inch 4K Monitor,Electronics,2024-05-23,4,320.0,East
+324,105,HD Pro Webcam,Electronics,2024-05-24,6,60.0,North
+325,108,Noise Cancelling Headphones,Audio,2024-05-24,3,175.0,Central
+326,102,Wireless Mouse,Computer Accessories,2024-05-25,7,25.0,Central
+327,105,HD Pro Webcam,Electronics,2024-05-25,6,60.0,West
+328,105,HD Pro Webcam,Electronics,2024-05-26,4,60.0,East
+329,104,27-inch 4K Monitor,Electronics,2024-05-26,4,320.0,West
+330,102,Wireless Mouse,Computer Accessories,2024-05-26,8,25.0,Central
+331,106,Ergonomic Office Chair,Furniture,2024-05-26,5,210.0,East
+332,105,HD Pro Webcam,Electronics,2024-05-27,1,60.0,West
+333,105,HD Pro Webcam,Electronics,2024-05-27,1,60.0,Central
+334,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-27,2,24.0,Central
+335,108,Noise Cancelling Headphones,Audio,2024-05-28,3,175.0,South
+336,110,Laser Multifunction Printer,Office Supplies,2024-05-28,3,195.0,South
+337,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-05-28,6,24.0,South
+338,102,Wireless Mouse,Computer Accessories,2024-05-29,2,25.0,East
+339,108,Noise Cancelling Headphones,Audio,2024-05-29,1,175.0,Central
+340,106,Ergonomic Office Chair,Furniture,2024-05-29,6,210.0,South
+341,105,HD Pro Webcam,Electronics,2024-05-30,3,60.0,West
+342,104,27-inch 4K Monitor,Electronics,2024-05-31,2,320.0,Central
+343,109,Portable Bluetooth Speaker,Audio,2024-06-01,5,55.0,East
+344,103,USB-C Multiport Hub,Computer Accessories,2024-06-01,9,45.0,East
+345,112,Laptop Cooling Pad,Computer Accessories,2024-06-01,3,35.0,West
+346,103,USB-C Multiport Hub,Computer Accessories,2024-06-02,8,45.0,Central
+347,106,Ergonomic Office Chair,Furniture,2024-06-02,1,210.0,West
+348,105,HD Pro Webcam,Electronics,2024-06-03,5,60.0,North
+349,106,Ergonomic Office Chair,Furniture,2024-06-04,6,210.0,East
+350,110,Laser Multifunction Printer,Office Supplies,2024-06-04,4,195.0,East
+351,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-05,9,24.0,North
+352,109,Portable Bluetooth Speaker,Audio,2024-06-06,3,55.0,Central
+353,104,27-inch 4K Monitor,Electronics,2024-06-06,6,320.0,North
+354,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-06,6,24.0,West
+355,103,USB-C Multiport Hub,Computer Accessories,2024-06-07,2,45.0,East
+356,102,Wireless Mouse,Computer Accessories,2024-06-08,5,25.0,Central
+357,103,USB-C Multiport Hub,Computer Accessories,2024-06-08,9,45.0,East
+358,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-08,10,24.0,West
+359,112,Laptop Cooling Pad,Computer Accessories,2024-06-09,4,35.0,West
+360,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-09,9,24.0,Central
+361,107,Adjustable Standing Desk,Furniture,2024-06-09,3,340.0,North
+362,112,Laptop Cooling Pad,Computer Accessories,2024-06-09,5,35.0,West
+363,104,27-inch 4K Monitor,Electronics,2024-06-10,3,320.0,North
+364,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-10,10,24.0,East
+365,107,Adjustable Standing Desk,Furniture,2024-06-11,3,340.0,South
+366,108,Noise Cancelling Headphones,Audio,2024-06-12,1,175.0,South
+367,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-13,2,24.0,North
+368,106,Ergonomic Office Chair,Furniture,2024-06-13,2,210.0,South
+369,110,Laser Multifunction Printer,Office Supplies,2024-06-13,2,195.0,North
+370,104,27-inch 4K Monitor,Electronics,2024-06-14,5,320.0,South
+371,104,27-inch 4K Monitor,Electronics,2024-06-14,3,320.0,South
+372,110,Laser Multifunction Printer,Office Supplies,2024-06-14,1,195.0,East
+373,103,USB-C Multiport Hub,Computer Accessories,2024-06-15,6,45.0,South
+374,102,Wireless Mouse,Computer Accessories,2024-06-15,2,25.0,South
+375,106,Ergonomic Office Chair,Furniture,2024-06-16,2,210.0,Central
+376,106,Ergonomic Office Chair,Furniture,2024-06-16,1,210.0,South
+377,101,Mechanical Keyboard,Computer Accessories,2024-06-17,2,85.0,West
+378,109,Portable Bluetooth Speaker,Audio,2024-06-17,1,55.0,North
+379,108,Noise Cancelling Headphones,Audio,2024-06-18,3,175.0,Central
+380,110,Laser Multifunction Printer,Office Supplies,2024-06-18,1,195.0,West
+381,104,27-inch 4K Monitor,Electronics,2024-06-19,5,320.0,North
+382,112,Laptop Cooling Pad,Computer Accessories,2024-06-19,10,35.0,East
+383,108,Noise Cancelling Headphones,Audio,2024-06-19,6,175.0,North
+384,108,Noise Cancelling Headphones,Audio,2024-06-20,4,175.0,West
+385,102,Wireless Mouse,Computer Accessories,2024-06-21,9,25.0,North
+386,102,Wireless Mouse,Computer Accessories,2024-06-21,4,25.0,North
+387,103,USB-C Multiport Hub,Computer Accessories,2024-06-21,10,45.0,East
+388,110,Laser Multifunction Printer,Office Supplies,2024-06-22,5,195.0,East
+389,108,Noise Cancelling Headphones,Audio,2024-06-22,5,175.0,Central
+390,107,Adjustable Standing Desk,Furniture,2024-06-22,1,340.0,North
+391,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-23,5,24.0,West
+392,108,Noise Cancelling Headphones,Audio,2024-06-23,2,175.0,West
+393,106,Ergonomic Office Chair,Furniture,2024-06-23,4,210.0,West
+394,107,Adjustable Standing Desk,Furniture,2024-06-23,6,340.0,North
+395,107,Adjustable Standing Desk,Furniture,2024-06-24,3,340.0,East
+396,106,Ergonomic Office Chair,Furniture,2024-06-24,2,210.0,West
+397,102,Wireless Mouse,Computer Accessories,2024-06-25,3,25.0,West
+398,112,Laptop Cooling Pad,Computer Accessories,2024-06-26,7,35.0,South
+399,101,Mechanical Keyboard,Computer Accessories,2024-06-27,5,85.0,Central
+400,109,Portable Bluetooth Speaker,Audio,2024-06-27,3,55.0,North
+401,107,Adjustable Standing Desk,Furniture,2024-06-27,3,340.0,West
+402,101,Mechanical Keyboard,Computer Accessories,2024-06-28,3,85.0,Central
+403,105,HD Pro Webcam,Electronics,2024-06-28,3,60.0,North
+404,110,Laser Multifunction Printer,Office Supplies,2024-06-28,5,195.0,South
+405,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-06-29,5,24.0,North
+406,106,Ergonomic Office Chair,Furniture,2024-06-29,5,210.0,East
+407,105,HD Pro Webcam,Electronics,2024-06-30,5,60.0,South
+408,107,Adjustable Standing Desk,Furniture,2024-06-30,5,340.0,Central
+409,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-01,10,24.0,North
+410,110,Laser Multifunction Printer,Office Supplies,2024-07-01,6,195.0,East
+411,101,Mechanical Keyboard,Computer Accessories,2024-07-01,2,85.0,East
+412,105,HD Pro Webcam,Electronics,2024-07-02,3,60.0,East
+413,101,Mechanical Keyboard,Computer Accessories,2024-07-02,2,85.0,South
+414,110,Laser Multifunction Printer,Office Supplies,2024-07-02,6,195.0,West
+415,103,USB-C Multiport Hub,Computer Accessories,2024-07-03,2,45.0,North
+416,109,Portable Bluetooth Speaker,Audio,2024-07-04,2,55.0,West
+417,107,Adjustable Standing Desk,Furniture,2024-07-04,4,340.0,East
+418,103,USB-C Multiport Hub,Computer Accessories,2024-07-04,6,45.0,East
+419,110,Laser Multifunction Printer,Office Supplies,2024-07-05,1,195.0,North
+420,103,USB-C Multiport Hub,Computer Accessories,2024-07-05,2,45.0,North
+421,105,HD Pro Webcam,Electronics,2024-07-05,4,60.0,West
+422,110,Laser Multifunction Printer,Office Supplies,2024-07-06,4,195.0,West
+423,105,HD Pro Webcam,Electronics,2024-07-06,2,60.0,Central
+424,102,Wireless Mouse,Computer Accessories,2024-07-06,8,25.0,North
+425,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-07,9,24.0,Central
+426,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-07,2,24.0,South
+427,107,Adjustable Standing Desk,Furniture,2024-07-07,5,340.0,North
+428,104,27-inch 4K Monitor,Electronics,2024-07-08,3,320.0,South
+429,105,HD Pro Webcam,Electronics,2024-07-09,3,60.0,East
+430,101,Mechanical Keyboard,Computer Accessories,2024-07-10,4,85.0,West
+431,103,USB-C Multiport Hub,Computer Accessories,2024-07-11,10,45.0,South
+432,109,Portable Bluetooth Speaker,Audio,2024-07-12,6,55.0,East
+433,102,Wireless Mouse,Computer Accessories,2024-07-12,2,25.0,West
+434,101,Mechanical Keyboard,Computer Accessories,2024-07-12,4,85.0,North
+435,110,Laser Multifunction Printer,Office Supplies,2024-07-13,4,195.0,Central
+436,107,Adjustable Standing Desk,Furniture,2024-07-13,6,340.0,West
+437,105,HD Pro Webcam,Electronics,2024-07-13,1,60.0,West
+438,106,Ergonomic Office Chair,Furniture,2024-07-14,2,210.0,Central
+439,108,Noise Cancelling Headphones,Audio,2024-07-14,6,175.0,East
+440,107,Adjustable Standing Desk,Furniture,2024-07-15,1,340.0,South
+441,110,Laser Multifunction Printer,Office Supplies,2024-07-16,4,195.0,Central
+442,102,Wireless Mouse,Computer Accessories,2024-07-16,6,25.0,East
+443,106,Ergonomic Office Chair,Furniture,2024-07-17,2,210.0,North
+444,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-18,10,24.0,Central
+445,104,27-inch 4K Monitor,Electronics,2024-07-18,3,320.0,East
+446,112,Laptop Cooling Pad,Computer Accessories,2024-07-18,4,35.0,South
+447,103,USB-C Multiport Hub,Computer Accessories,2024-07-19,5,45.0,South
+448,103,USB-C Multiport Hub,Computer Accessories,2024-07-20,3,45.0,South
+449,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-20,9,24.0,Central
+450,110,Laser Multifunction Printer,Office Supplies,2024-07-20,4,195.0,Central
+451,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-20,7,24.0,East
+452,108,Noise Cancelling Headphones,Audio,2024-07-21,1,175.0,West
+453,108,Noise Cancelling Headphones,Audio,2024-07-21,6,175.0,East
+454,110,Laser Multifunction Printer,Office Supplies,2024-07-22,1,195.0,East
+455,109,Portable Bluetooth Speaker,Audio,2024-07-22,1,55.0,East
+456,108,Noise Cancelling Headphones,Audio,2024-07-23,1,175.0,North
+457,106,Ergonomic Office Chair,Furniture,2024-07-23,3,210.0,North
+458,102,Wireless Mouse,Computer Accessories,2024-07-24,10,25.0,West
+459,108,Noise Cancelling Headphones,Audio,2024-07-24,5,175.0,Central
+460,112,Laptop Cooling Pad,Computer Accessories,2024-07-24,9,35.0,Central
+461,104,27-inch 4K Monitor,Electronics,2024-07-25,3,320.0,Central
+462,108,Noise Cancelling Headphones,Audio,2024-07-25,5,175.0,South
+463,101,Mechanical Keyboard,Computer Accessories,2024-07-25,4,85.0,North
+464,112,Laptop Cooling Pad,Computer Accessories,2024-07-26,10,35.0,South
+465,101,Mechanical Keyboard,Computer Accessories,2024-07-26,2,85.0,West
+466,109,Portable Bluetooth Speaker,Audio,2024-07-27,5,55.0,Central
+467,103,USB-C Multiport Hub,Computer Accessories,2024-07-27,7,45.0,East
+468,107,Adjustable Standing Desk,Furniture,2024-07-27,4,340.0,East
+469,110,Laser Multifunction Printer,Office Supplies,2024-07-28,1,195.0,East
+470,102,Wireless Mouse,Computer Accessories,2024-07-28,3,25.0,Central
+471,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-28,6,24.0,East
+472,112,Laptop Cooling Pad,Computer Accessories,2024-07-28,4,35.0,East
+473,110,Laser Multifunction Printer,Office Supplies,2024-07-29,6,195.0,South
+474,105,HD Pro Webcam,Electronics,2024-07-30,6,60.0,West
+475,103,USB-C Multiport Hub,Computer Accessories,2024-07-30,3,45.0,East
+476,107,Adjustable Standing Desk,Furniture,2024-07-31,6,340.0,East
+477,103,USB-C Multiport Hub,Computer Accessories,2024-07-31,10,45.0,North
+478,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-07-31,8,24.0,Central
+479,101,Mechanical Keyboard,Computer Accessories,2024-08-01,3,85.0,East
+480,103,USB-C Multiport Hub,Computer Accessories,2024-08-01,7,45.0,West
+481,104,27-inch 4K Monitor,Electronics,2024-08-02,2,320.0,South
+482,105,HD Pro Webcam,Electronics,2024-08-03,1,60.0,Central
+483,109,Portable Bluetooth Speaker,Audio,2024-08-03,6,55.0,Central
+484,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-04,4,24.0,Central
+485,107,Adjustable Standing Desk,Furniture,2024-08-04,2,340.0,South
+486,112,Laptop Cooling Pad,Computer Accessories,2024-08-05,4,35.0,West
+487,107,Adjustable Standing Desk,Furniture,2024-08-06,3,340.0,South
+488,110,Laser Multifunction Printer,Office Supplies,2024-08-07,3,195.0,West
+489,104,27-inch 4K Monitor,Electronics,2024-08-07,5,320.0,South
+490,108,Noise Cancelling Headphones,Audio,2024-08-08,2,175.0,East
+491,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-08,9,24.0,West
+492,107,Adjustable Standing Desk,Furniture,2024-08-09,5,340.0,Central
+493,107,Adjustable Standing Desk,Furniture,2024-08-09,2,340.0,South
+494,103,USB-C Multiport Hub,Computer Accessories,2024-08-10,2,45.0,West
+495,106,Ergonomic Office Chair,Furniture,2024-08-10,5,210.0,North
+496,112,Laptop Cooling Pad,Computer Accessories,2024-08-10,3,35.0,East
+497,102,Wireless Mouse,Computer Accessories,2024-08-10,6,25.0,West
+498,103,USB-C Multiport Hub,Computer Accessories,2024-08-11,3,45.0,South
+499,108,Noise Cancelling Headphones,Audio,2024-08-11,3,175.0,North
+500,107,Adjustable Standing Desk,Furniture,2024-08-11,1,340.0,West
+501,109,Portable Bluetooth Speaker,Audio,2024-08-11,3,55.0,South
+502,102,Wireless Mouse,Computer Accessories,2024-08-12,5,25.0,North
+503,106,Ergonomic Office Chair,Furniture,2024-08-12,1,210.0,East
+504,103,USB-C Multiport Hub,Computer Accessories,2024-08-13,6,45.0,West
+505,103,USB-C Multiport Hub,Computer Accessories,2024-08-14,9,45.0,West
+506,110,Laser Multifunction Printer,Office Supplies,2024-08-14,1,195.0,North
+507,101,Mechanical Keyboard,Computer Accessories,2024-08-14,3,85.0,South
+508,109,Portable Bluetooth Speaker,Audio,2024-08-15,6,55.0,Central
+509,107,Adjustable Standing Desk,Furniture,2024-08-16,1,340.0,East
+510,104,27-inch 4K Monitor,Electronics,2024-08-16,3,320.0,North
+511,101,Mechanical Keyboard,Computer Accessories,2024-08-16,2,85.0,West
+512,110,Laser Multifunction Printer,Office Supplies,2024-08-17,4,195.0,North
+513,102,Wireless Mouse,Computer Accessories,2024-08-17,10,25.0,North
+514,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-17,5,24.0,South
+515,105,HD Pro Webcam,Electronics,2024-08-17,4,60.0,North
+516,106,Ergonomic Office Chair,Furniture,2024-08-18,2,210.0,Central
+517,107,Adjustable Standing Desk,Furniture,2024-08-18,2,340.0,North
+518,109,Portable Bluetooth Speaker,Audio,2024-08-18,3,55.0,North
+519,109,Portable Bluetooth Speaker,Audio,2024-08-18,5,55.0,Central
+520,109,Portable Bluetooth Speaker,Audio,2024-08-19,1,55.0,West
+521,108,Noise Cancelling Headphones,Audio,2024-08-19,1,175.0,West
+522,106,Ergonomic Office Chair,Furniture,2024-08-19,3,210.0,North
+523,102,Wireless Mouse,Computer Accessories,2024-08-20,5,25.0,North
+524,110,Laser Multifunction Printer,Office Supplies,2024-08-20,6,195.0,East
+525,101,Mechanical Keyboard,Computer Accessories,2024-08-21,3,85.0,Central
+526,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-22,9,24.0,West
+527,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-22,4,24.0,North
+528,108,Noise Cancelling Headphones,Audio,2024-08-23,1,175.0,East
+529,104,27-inch 4K Monitor,Electronics,2024-08-23,1,320.0,South
+530,101,Mechanical Keyboard,Computer Accessories,2024-08-23,3,85.0,East
+531,107,Adjustable Standing Desk,Furniture,2024-08-24,5,340.0,West
+532,105,HD Pro Webcam,Electronics,2024-08-24,1,60.0,South
+533,105,HD Pro Webcam,Electronics,2024-08-24,3,60.0,North
+534,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-08-24,6,24.0,North
+535,107,Adjustable Standing Desk,Furniture,2024-08-25,4,340.0,West
+536,107,Adjustable Standing Desk,Furniture,2024-08-25,3,340.0,South
+537,108,Noise Cancelling Headphones,Audio,2024-08-25,6,175.0,West
+538,109,Portable Bluetooth Speaker,Audio,2024-08-26,3,55.0,North
+539,112,Laptop Cooling Pad,Computer Accessories,2024-08-26,3,35.0,West
+540,103,USB-C Multiport Hub,Computer Accessories,2024-08-27,6,45.0,East
+541,102,Wireless Mouse,Computer Accessories,2024-08-27,7,25.0,East
+542,105,HD Pro Webcam,Electronics,2024-08-27,4,60.0,Central
+543,107,Adjustable Standing Desk,Furniture,2024-08-28,2,340.0,West
+544,106,Ergonomic Office Chair,Furniture,2024-08-28,4,210.0,North
+545,112,Laptop Cooling Pad,Computer Accessories,2024-08-28,8,35.0,East
+546,101,Mechanical Keyboard,Computer Accessories,2024-08-29,1,85.0,West
+547,106,Ergonomic Office Chair,Furniture,2024-08-29,5,210.0,South
+548,101,Mechanical Keyboard,Computer Accessories,2024-08-29,2,85.0,Central
+549,108,Noise Cancelling Headphones,Audio,2024-08-30,1,175.0,South
+550,102,Wireless Mouse,Computer Accessories,2024-08-30,7,25.0,East
+551,107,Adjustable Standing Desk,Furniture,2024-08-30,5,340.0,North
+552,103,USB-C Multiport Hub,Computer Accessories,2024-08-31,9,45.0,East
+553,106,Ergonomic Office Chair,Furniture,2024-08-31,4,210.0,North
+554,110,Laser Multifunction Printer,Office Supplies,2024-08-31,2,195.0,Central
+555,106,Ergonomic Office Chair,Furniture,2024-08-31,4,210.0,East
+556,105,HD Pro Webcam,Electronics,2024-09-01,2,60.0,North
+557,101,Mechanical Keyboard,Computer Accessories,2024-09-01,6,85.0,South
+558,108,Noise Cancelling Headphones,Audio,2024-09-01,5,175.0,West
+559,109,Portable Bluetooth Speaker,Audio,2024-09-01,1,55.0,East
+560,112,Laptop Cooling Pad,Computer Accessories,2024-09-02,5,35.0,Central
+561,105,HD Pro Webcam,Electronics,2024-09-02,6,60.0,West
+562,102,Wireless Mouse,Computer Accessories,2024-09-03,3,25.0,West
+563,112,Laptop Cooling Pad,Computer Accessories,2024-09-04,3,35.0,East
+564,106,Ergonomic Office Chair,Furniture,2024-09-05,6,210.0,North
+565,109,Portable Bluetooth Speaker,Audio,2024-09-05,5,55.0,East
+566,105,HD Pro Webcam,Electronics,2024-09-05,2,60.0,South
+567,109,Portable Bluetooth Speaker,Audio,2024-09-06,2,55.0,North
+568,104,27-inch 4K Monitor,Electronics,2024-09-06,2,320.0,South
+569,101,Mechanical Keyboard,Computer Accessories,2024-09-07,3,85.0,Central
+570,110,Laser Multifunction Printer,Office Supplies,2024-09-07,3,195.0,West
+571,109,Portable Bluetooth Speaker,Audio,2024-09-07,2,55.0,Central
+572,102,Wireless Mouse,Computer Accessories,2024-09-08,8,25.0,West
+573,109,Portable Bluetooth Speaker,Audio,2024-09-08,4,55.0,West
+574,102,Wireless Mouse,Computer Accessories,2024-09-09,7,25.0,North
+575,108,Noise Cancelling Headphones,Audio,2024-09-09,4,175.0,Central
+576,106,Ergonomic Office Chair,Furniture,2024-09-09,2,210.0,Central
+577,110,Laser Multifunction Printer,Office Supplies,2024-09-10,2,195.0,South
+578,107,Adjustable Standing Desk,Furniture,2024-09-10,5,340.0,North
+579,102,Wireless Mouse,Computer Accessories,2024-09-10,4,25.0,East
+580,103,USB-C Multiport Hub,Computer Accessories,2024-09-11,5,45.0,East
+581,105,HD Pro Webcam,Electronics,2024-09-12,1,60.0,East
+582,104,27-inch 4K Monitor,Electronics,2024-09-12,6,320.0,Central
+583,105,HD Pro Webcam,Electronics,2024-09-12,2,60.0,East
+584,109,Portable Bluetooth Speaker,Audio,2024-09-13,1,55.0,Central
+585,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-09-13,4,24.0,South
+586,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-09-13,7,24.0,Central
+587,101,Mechanical Keyboard,Computer Accessories,2024-09-14,1,85.0,North
+588,111,Premium Paper Ream (Pack of 5),Office Supplies,2024-09-14,6,24.0,South
+589,107,Adjustable Standing Desk,Furniture,2024-09-15,5,340.0,North
+590,108,Noise Cancelling Headphones,Audio,2024-09-15,6,175.0,Central
+591,105,HD Pro Webcam,Electronics,2024-09-15,6,60.0,East
+592,108,Noise Cancelling Headphones,Audio,2024-09-15,2,175.0,West
+593,108,Noise Cancelling Headphones,Audio,2024-09-16,1,175.0,North
+594,103,USB-C Multiport Hub,Computer Accessories,2024-09-16,8,45.0,West
+595,104,27-inch 4K Monitor,Electronics,2024-09-17,3,320.0,Central
+596,103,USB-C Multiport Hub,Computer Accessories,2024-09-17,7,45.0,East
+597,103,USB-C Multiport Hub,Computer Accessories,2024-09-18,10,45.0,Central
+598,102,Wireless Mouse,Computer Accessories,2024-09-18,5,25.0,West
+599,105,HD Pro Webcam,Electronics,2024-09-19,4,60.0,South
+600,102,Wireless Mouse,Computer Accessories,2024-09-20,6,25.0,West
+601,107,Adjustable Standing Desk,Furniture,2024-09-21,2,340.0,South
+602,106,Ergonomic Office Chair,Furniture,2024-09-21,5,210.0,East
+603,104,27-inch 4K Monitor,Electronics,2024-09-21,2,320.0,West
+604,109,Portable Bluetooth Speaker,Audio,2024-09-21,4,55.0,West
+605,108,Noise Cancelling Headphones,Audio,2024-09-22,1,175.0,North
+606,107,Adjustable Standing Desk,Furniture,2024-09-22,5,340.0,West
+607,104,27-inch 4K Monitor,Electronics,2024-09-22,2,320.0,Central
+608,101,Mechanical Keyboard,Computer Accessories,2024-09-23,1,85.0,East
+609,108,Noise Cancelling Headphones,Audio,2024-09-23,5,175.0,West
+610,109,Portable Bluetooth Speaker,Audio,2024-09-24,1,55.0,North
+611,107,Adjustable Standing Desk,Furniture,2024-09-24,2,340.0,East
+612,106,Ergonomic Office Chair,Furniture,2024-09-25,4,210.0,East
+613,101,Mechanical Keyboard,Computer Accessories,2024-09-25,4,85.0,North
+614,110,Laser Multifunction Printer,Office Supplies,2024-09-25,5,195.0,South
+615,109,Portable Bluetooth Speaker,Audio,2024-09-26,3,55.0,North
+616,107,Adjustable Standing Desk,Furniture,2024-09-26,5,340.0,West

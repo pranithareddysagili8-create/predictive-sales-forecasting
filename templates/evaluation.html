@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Model Evaluation | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Forecast Model Evaluation &amp; Accuracy</h1>
+        <p class="page-desc">Time-ordered holdout validation comparing Moving Average against Linear Regression without temporal leakage.</p>
+    </div>
+    <div class="header-actions">
+        <a href="{{ url_for('forecasting_page') }}" class="btn btn-secondary">
+            <span>🔮</span> Adjust Forecasting
+        </a>
+        <a href="{{ url_for('reports_page') }}" class="btn btn-primary">
+            <span>📑</span> Generate Final Report
+        </a>
+    </div>
+</div>
+
+<!-- Evaluation Parameter Form -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">⚙️ Holdout Test Configuration</h2>
+        <span class="badge badge-primary">Time-Series Validation</span>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('evaluation_page') }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; align-items: flex-end;">
+            
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="train_ratio">Train / Test Split Ratio:</label>
+                <select name="train_ratio" id="train_ratio" class="form-select">
+                    <option value="0.8" {% if train_ratio == 0.8 %}selected{% endif %}>80% Training / 20% Testing (Recommended)</option>
+                    <option value="0.7" {% if train_ratio == 0.7 %}selected{% endif %}>70% Training / 30% Testing</option>
+                    <option value="0.85" {% if train_ratio == 0.85 %}selected{% endif %}>85% Training / 15% Testing</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="window">MA Window Size (Periods):</label>
+                <select name="window" id="window" class="form-select">
+                    <option value="3" {% if window == 3 %}selected{% endif %}>3 Periods Window</option>
+                    <option value="7" {% if window == 7 %}selected{% endif %}>7 Periods Window (Weekly)</option>
+                    <option value="14" {% if window == 14 %}selected{% endif %}>14 Periods Window (Bi-weekly)</option>
+                    <option value="30" {% if window == 30 %}selected{% endif %}>30 Periods Window</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="freq">Interval Aggregation:</label>
+                <select name="freq" id="freq" class="form-select">
+                    <option value="D" {% if freq == 'D' %}selected{% endif %}>Daily Data</option>
+                    <option value="M" {% if freq == 'M' %}selected{% endif %}>Monthly Data</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 0;">
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                    <span>🎯</span> Run Holdout Evaluation
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if not eval_res.success %}
+    <div class="alert alert-warning">
+        <span>⚠️</span>
+        <div>
+            <strong>Evaluation Notice:</strong> {{ eval_res.message }}
+        </div>
+    </div>
+{% else %}
+
+    <!-- Model Comparison Metric Cards -->
+    <div class="grid-2">
+        <!-- Moving Average Metrics Card -->
+        <div class="card" style="border-top: 4px solid #d97706;">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span>📊</span> Simple Moving Average ({{ eval_res.window }}-period)
+                </h3>
+                <span class="badge badge-warning">Baseline Model</span>
+            </div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
+                    <div style="background-color: #fffbeb; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #92400e; font-weight: 700;">MAE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #78350f; margin-top: 0.2rem;">
+                            ${{ "{:,.2f}".format(eval_res.ma_metrics.mae) }}
+                        </div>
+                        <div style="font-size: 0.7rem; color: #b45309;">Mean Absolute Error</div>
+                    </div>
+
+                    <div style="background-color: #fffbeb; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #92400e; font-weight: 700;">RMSE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #78350f; margin-top: 0.2rem;">
+                            ${{ "{:,.2f}".format(eval_res.ma_metrics.rmse) }}
+                        </div>
+                        <div style="font-size: 0.7rem; color: #b45309;">Root Mean Squared</div>
+                    </div>
+
+                    <div style="background-color: #fffbeb; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #92400e; font-weight: 700;">MAPE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #78350f; margin-top: 0.2rem;">
+                            {{ eval_res.ma_metrics.mape }}%
+                        </div>
+                        <div style="font-size: 0.7rem; color: #b45309;">Percent Error</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 1rem; line-height: 1.4;">
+                    Smooths out high-frequency fluctuations using a trailing rolling window of the past {{ eval_res.window }} points.
+                </p>
+            </div>
+        </div>
+
+        <!-- Linear Regression Metrics Card -->
+        <div class="card" style="border-top: 4px solid #059669;">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <span>📈</span> Scikit-Learn Linear Regression
+                </h3>
+                <span class="badge badge-success">Trend Model</span>
+            </div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
+                    <div style="background-color: #ecfdf5; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #065f46; font-weight: 700;">MAE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #064e3b; margin-top: 0.2rem;">
+                            ${{ "{:,.2f}".format(eval_res.lr_metrics.mae) }}
+                        </div>
+                        <div style="font-size: 0.7rem; color: #047857;">Mean Absolute Error</div>
+                    </div>
+
+                    <div style="background-color: #ecfdf5; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #065f46; font-weight: 700;">RMSE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #064e3b; margin-top: 0.2rem;">
+                            ${{ "{:,.2f}".format(eval_res.lr_metrics.rmse) }}
+                        </div>
+                        <div style="font-size: 0.7rem; color: #047857;">Root Mean Squared</div>
+                    </div>
+
+                    <div style="background-color: #ecfdf5; padding: 0.85rem 0.5rem; border-radius: var(--radius-sm);">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #065f46; font-weight: 700;">MAPE</div>
+                        <div style="font-size: 1.45rem; font-weight: 800; color: #064e3b; margin-top: 0.2rem;">
+                            {{ eval_res.lr_metrics.mape }}%
+                        </div>
+                        <div style="font-size: 0.7rem; color: #047857;">Percent Error</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 1rem; line-height: 1.4;">
+                    Fits an optimal Ordinary Least Squares (OLS) line on training time points to capture general revenue trajectory.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Interpretation Card -->
+    <div class="card" style="background-color: #f8fafc; border: 1px solid #cbd5e1;">
+        <div class="card-body">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 1.5rem;">🏆</span>
+                <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a;">
+                    Evaluation Verdict: Winner &mdash; <span style="color: #2563eb;">{{ eval_res.winner }}</span>
+                </h3>
+            </div>
+            <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.75rem;">
+                {{ eval_res.win_reason }}
+            </p>
+            <div style="font-size: 0.82rem; color: #64748b; background-color: #ffffff; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border-left: 3px solid #2563eb;">
+                <strong>💡 Beginner Interpretation:</strong>
+                MAE (Mean Absolute Error) measures the average dollar deviation between predicted sales and actual sales during the test period.
+                For example, an MAE of ${{ "{:,.2f}".format(eval_res.ma_metrics.mae) }} means that, on any given period, the Moving Average model was off by approximately ${{ "{:,.2f}".format(eval_res.ma_metrics.mae) }} in real cash revenue.
+            </div>
+        </div>
+    </div>
+
+    <!-- Holdout Evaluation Chart -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <span>📈</span> Chronological Holdout Plot (Train vs Test Actual vs Models)
+            </h2>
+            <div>
+                <span class="badge badge-primary">Train: {{ eval_res.train_count }} pts ({{ eval_res.split_ratio }}%)</span>
+                <span class="badge badge-success">Test: {{ eval_res.test_count }} pts ({{ 100 - eval_res.split_ratio }}%)</span>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if eval_res.chart_b64 %}
+                <div class="chart-wrapper">
+                    <img src="data:image/png;base64,{{ eval_res.chart_b64 }}" alt="Holdout Evaluation Chart" class="chart-img">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Why No Random Shuffling Box -->
+    <div class="formula-box">
+        <div class="formula-title">🛡️ Academic Principle: Why Time-Series Data Must Never Be Randomly Shuffled</div>
+        <p style="font-size: 0.85rem; color: #334155; margin-top: 0.35rem; line-height: 1.5;">
+            In standard machine learning classification (e.g. image recognition), observations are independent and randomly partitioned.
+            However, <strong>sales records possess temporal auto-correlation</strong> (sales tomorrow depend on sales today).
+            If we randomly shuffled time-series records, future observations would leak into the training set (a critical flaw called <em>lookahead bias</em> or <em>data leakage</em>).
+            To preserve realistic business validity, we strictly train on earlier historical timeframes and test exclusively on unseen future timeframes.
+        </p>
+    </div>
+
+    <!-- Holdout Test Records Detailed Table -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <span>📋</span> Holdout Test Observations &amp; Error Breakdown
+            </h2>
+            <span class="badge badge-gray">{{ eval_res.test_rows|length }} Test Records</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Test Date / Period</th>
+                            <th>Actual Revenue ($)</th>
+                            <th>MA Predicted ($)</th>
+                            <th>MA Error ($)</th>
+                            <th>LinReg Predicted ($)</th>
+                            <th>LinReg Error ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in eval_res.test_rows %}
+                        <tr>
+                            <td><strong>{{ row.date }}</strong></td>
+                            <td style="font-weight: 700; color: #1e3a8a;">${{ "{:,.2f}".format(row.actual) }}</td>
+                            <td style="color: #d97706;">${{ "{:,.2f}".format(row.ma_pred) }}</td>
+                            <td style="color: #b45309; font-size: 0.82rem;">${{ "{:,.2f}".format(row.ma_error) }}</td>
+                            <td style="color: #059669;">${{ "{:,.2f}".format(row.lr_pred) }}</td>
+                            <td style="color: #047857; font-size: 0.82rem;">${{ "{:,.2f}".format(row.lr_error) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock %}

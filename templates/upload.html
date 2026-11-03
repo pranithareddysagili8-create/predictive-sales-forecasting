@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Sales Data | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Upload Historical Sales Data</h1>
+        <p class="page-desc">Import CSV files containing your business transaction history for automated validation and forecasting.</p>
+    </div>
+    <div class="header-actions">
+        <a href="{{ url_for('download_sample_csv') }}" class="btn btn-secondary">
+            <span>📥</span> Download Sample CSV
+        </a>
+    </div>
+</div>
+
+<div class="grid-2">
+    <!-- Upload Form -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">📤 Upload CSV File</h2>
+            <span class="badge badge-primary">CSV Format</span>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('upload_file_route') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="form-label" for="file">Select Sales CSV File</label>
+                    <div class="file-dropzone" onclick="document.getElementById('csvFileInput').click();">
+                        <div class="file-dropzone-icon">📄</div>
+                        <p style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">
+                            Click to browse or drag and drop your file here
+                        </p>
+                        <p style="font-size: 0.8rem; color: #64748b;" id="fileNameDisplay">
+                            Supported: .csv files (Comma-separated values)
+                        </p>
+                        <input type="file" id="csvFileInput" name="file" accept=".csv" style="display: none;" onchange="updateFileName(this);">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1.25rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">
+                        <span>🚀</span> Validate &amp; Import Dataset
+                    </button>
+                </div>
+            </form>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #334155;">Need test data?</span>
+                    <p style="font-size: 0.78rem; color: #64748b;">Use our pre-configured retail electronics dataset.</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="{{ url_for('download_sample_csv') }}" class="btn btn-sm btn-secondary">
+                        📥 Download Sample
+                    </a>
+                    <form action="{{ url_for('reset_data_route') }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-outline">
+                            🔄 Load Sample
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Requirements & Validation Rules -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">📋 Dataset Specifications &amp; Rules</h2>
+        </div>
+        <div class="card-body">
+            <p style="font-size: 0.88rem; color: #334155; margin-bottom: 1rem;">
+                To ensure high forecasting reliability and prevent data corruption, your CSV file must satisfy these conditions:
+            </p>
+
+            <div style="margin-bottom: 1rem;">
+                <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 0.4rem;">
+                    Required Columns (Case-Insensitive):
+                </h4>
+                <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: #334155;">
+                    <li><code>sale_date</code>: Transaction date (e.g. <code>2024-01-15</code> or <code>15/01/2024</code>)</li>
+                    <li><code>product_name</code>: Name or description of the sold product</li>
+                    <li><code>quantity</code>: Positive integer count of units sold (must be &gt; 0)</li>
+                    <li><code>unit_price</code>: Positive unit sales price (must be &gt; 0.0)</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 0.4rem;">
+                    Optional Helpful Columns:
+                </h4>
+                <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: #334155;">
+                    <li><code>category</code>: Classification category (e.g. Electronics, Audio)</li>
+                    <li><code>region</code>: Geographic territory (e.g. North, West, South)</li>
+                    <li><code>product_id</code>: Unique numeric product identifier</li>
+                </ul>
+            </div>
+
+            <div class="formula-box" style="margin-bottom: 0;">
+                <div class="formula-title">Automatic Revenue Calculation</div>
+                <div class="formula-text">Revenue = Quantity × Unit Price</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.3rem;">
+                    The system automatically computes total revenue for each record and generates continuous time intervals.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Dataset Preview -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <span>👁️</span> Active Dataset Preview (First {{ preview_rows|length }} of {{ summary.record_count }} records)
+        </h2>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span class="badge badge-primary">{{ summary.source_info.name }}</span>
+            <a href="{{ url_for('analytics_page') }}" class="btn btn-sm btn-primary">Proceed to Analytics &rarr;</a>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if preview_rows %}
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th># ID</th>
+                            <th>Sale Date</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total Revenue</th>
+                            <th>Region</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in preview_rows %}
+                        <tr>
+                            <td>{{ row.sale_id }}</td>
+                            <td><strong>{{ row.sale_date }}</strong></td>
+                            <td>{{ row.product_name }}</td>
+                            <td><span class="badge badge-gray">{{ row.category }}</span></td>
+                            <td>{{ row.quantity }}</td>
+                            <td>${{ "{:,.2f}".format(row.unit_price) }}</td>
+                            <td style="font-weight: 700; color: #047857;">${{ "{:,.2f}".format(row.revenue) }}</td>
+                            <td>{{ row.region }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No data loaded currently.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function updateFileName(input) {
+    var display = document.getElementById('fileNameDisplay');
+    if (input.files && input.files.length > 0) {
+        display.innerHTML = 'Selected: <strong style="color: #2563eb;">' + input.files[0].name + '</strong> (' + (input.files[0].size / 1024).toFixed(1) + ' KB)';
+    }
+}
+</script>
+{% endblock %}

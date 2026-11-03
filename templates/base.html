@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sales Forecasting & Business Analytics System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="nav-brand">
+            <span class="brand-icon">📈</span>
+            <div>
+                <span class="brand-title">SalesPredict Analytics</span>
+                <span class="brand-subtitle">Business Intelligence & Predictive Modeling</span>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item {% if active_page == 'dashboard' %}active{% endif %}">
+                <a href="{{ url_for('index') }}">📊 Dashboard</a>
+            </li>
+            <li class="nav-item {% if active_page == 'upload' %}active{% endif %}">
+                <a href="{{ url_for('upload_page') }}">📁 Upload Data</a>
+            </li>
+            <li class="nav-item {% if active_page == 'analytics' %}active{% endif %}">
+                <a href="{{ url_for('analytics_page') }}">📉 Business Analytics</a>
+            </li>
+            <li class="nav-item {% if active_page == 'forecasting' %}active{% endif %}">
+                <a href="{{ url_for('forecasting_page') }}">🔮 Sales Forecasting</a>
+            </li>
+            <li class="nav-item {% if active_page == 'evaluation' %}active{% endif %}">
+                <a href="{{ url_for('evaluation_page') }}">🎯 Model Evaluation</a>
+            </li>
+            <li class="nav-item {% if active_page == 'reports' %}active{% endif %}">
+                <a href="{{ url_for('reports_page') }}">📑 Reports</a>
+            </li>
+        </ul>
+
+        <div class="nav-badge" title="Active Data Source">
+            <span class="dot-status {% if db_status and db_status.connected and active_source_info and active_source_info.type == 'mysql' %}online{% else %}warning{% endif %}"></span>
+            <span>Source: {{ active_source_info.name if active_source_info else 'CSV Mode' }}</span>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Flash Notifications -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <span>{% if category == 'success' %}✅{% elif category == 'danger' or category == 'error' %}⚠️{% elif category == 'warning' %}🔔{% else %}ℹ️{% endif %}</span>
+                            <div>{{ message }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <strong>Predictive Sales Forecasting & Business Analytics System</strong>
+                <p style="font-size: 0.8rem; margin-top: 0.2rem; color: #94a3b8;">
+                    Second-Year B.Tech CSE Major Capstone Project &bull; Built with Python, Flask, Pandas, Matplotlib, Scikit-learn & MySQL.
+                </p>
+            </div>
+            <div style="font-size: 0.8rem; text-align: right;">
+                <span>⚡ Zero-Lag In-Memory & MySQL Dual Engine</span><br>
+                <span style="color: #64748b;">Academic Project Demonstration Ready</span>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

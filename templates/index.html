@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Sales Analytics Dashboard</h1>
+        <p class="page-desc">Overview of historical sales performance, active inventory metrics, and predictive insights.</p>
+    </div>
+    <div class="header-actions">
+        <a href="{{ url_for('upload_page') }}" class="btn btn-secondary">
+            <span>📁</span> Upload CSV
+        </a>
+        <a href="{{ url_for('forecasting_page') }}" class="btn btn-primary">
+            <span>🔮</span> Generate Forecast
+        </a>
+    </div>
+</div>
+
+<!-- 4 KPI Cards -->
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div>
+            <div class="kpi-label">Total Revenue</div>
+            <div class="kpi-value">${{ "{:,.2f}".format(summary.total_revenue) }}</div>
+            <div class="kpi-subtext">Avg Order: ${{ "{:,.2f}".format(summary.avg_order_value) }}</div>
+        </div>
+        <div class="kpi-icon icon-blue">💰</div>
+    </div>
+
+    <div class="kpi-card">
+        <div>
+            <div class="kpi-label">Total Quantity Sold</div>
+            <div class="kpi-value">{{ "{:,}".format(summary.total_quantity) }}</div>
+            <div class="kpi-subtext">Units across all transactions</div>
+        </div>
+        <div class="kpi-icon icon-green">📦</div>
+    </div>
+
+    <div class="kpi-card">
+        <div>
+            <div class="kpi-label">Active Products</div>
+            <div class="kpi-value">{{ summary.product_count }}</div>
+            <div class="kpi-subtext">Across {{ summary.category_count }} product categories</div>
+        </div>
+        <div class="kpi-icon icon-purple">🏷️</div>
+    </div>
+
+    <div class="kpi-card">
+        <div>
+            <div class="kpi-label">Total Sales Records</div>
+            <div class="kpi-value">{{ "{:,}".format(summary.record_count) }}</div>
+            <div class="kpi-subtext">{{ summary.date_min }} to {{ summary.date_max }} ({{ summary.days_span }} days)</div>
+        </div>
+        <div class="kpi-icon icon-amber">📑</div>
+    </div>
+</div>
+
+<!-- Main Historical Chart & Quick Summary -->
+<div class="grid-2">
+    <!-- Historical Sales Trend Chart -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">📈 Historical Sales Revenue Trend</h2>
+            <a href="{{ url_for('analytics_page') }}" class="btn btn-sm btn-outline">Explore Full Analytics &rarr;</a>
+        </div>
+        <div class="card-body">
+            {% if chart_url %}
+                <div class="chart-wrapper">
+                    <img src="data:image/png;base64,{{ chart_url }}" alt="Historical Sales Trend" class="chart-img">
+                </div>
+            {% else %}
+                <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No chart data available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Latest Forecast & System Insights -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">🔮 Latest Forecast Summary</h2>
+            <a href="{{ url_for('forecasting_page') }}" class="btn btn-sm btn-primary">Run Forecast Model</a>
+        </div>
+        <div class="card-body">
+            {% if latest_forecast %}
+                <div class="formula-box" style="margin-top: 0;">
+                    <div class="formula-title">Forecasting Configuration</div>
+                    <p style="font-size: 0.9rem; color: #475569;">
+                        Method: <strong>{{ latest_forecast.method }}</strong> &bull; Horizon: <strong>{{ latest_forecast.horizon }} periods</strong> &bull; Frequency: <strong>{{ latest_forecast.freq }}</strong>
+                    </p>
+                    <div style="margin-top: 0.75rem;">
+                        <span class="badge badge-success" style="font-size: 0.85rem; padding: 0.35rem 0.65rem;">
+                            Projected Total: ${{ "{:,.2f}".format(latest_forecast.total_projected) }}
+                        </span>
+                        <span class="badge badge-primary" style="font-size: 0.85rem; padding: 0.35rem 0.65rem; margin-left: 0.4rem;">
+                            Daily/Period Avg: ${{ "{:,.2f}".format(latest_forecast.avg_projected) }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="max-height: 220px; overflow-y: auto; margin-top: 1rem;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Period / Date</th>
+                                <th>Projected Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in latest_forecast.preview_rows %}
+                            <tr>
+                                <td><strong>{{ row.period }}</strong></td>
+                                <td style="color: #059669; font-weight: 600;">${{ "{:,.2f}".format(row.value) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div style="text-align: center; padding: 2rem 1rem;">
+                    <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔮</div>
+                    <p style="font-weight: 600; color: #1e293b; margin-bottom: 0.3rem;">No Forecast Generated Yet</p>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.25rem;">
+                        Run the Moving Average baseline or Linear Regression model to forecast future sales for your business.
+                    </p>
+                    <a href="{{ url_for('forecasting_page') }}" class="btn btn-primary">
+                        Configure &amp; Generate Forecast
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Database Connectivity & Quick Controls -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">💾 Storage &amp; Database Integration (MySQL &amp; CSV)</h2>
+        <div>
+            {% if db_status.connected and db_status.database_exists %}
+                <span class="badge badge-success">MySQL Connected</span>
+            {% elif db_status.connected %}
+                <span class="badge badge-warning">MySQL Server Online (No DB)</span>
+            {% else %}
+                <span class="badge badge-gray">CSV File Mode (MySQL Offline)</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-body">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <p style="font-size: 0.92rem; color: #334155; font-weight: 500;">
+                    Current Active Source: <strong>{{ summary.source_info.name }}</strong>
+                </p>
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem;">
+                    Status: {{ db_status.message }}
+                </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <form action="{{ url_for('init_mysql_route') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary btn-sm" title="Create database and tables in MySQL">
+                        🛠️ Initialize MySQL DB
+                    </button>
+                </form>
+
+                <form action="{{ url_for('sync_to_mysql_route') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-success btn-sm" title="Upload active sales records into MySQL">
+                        ⬆️ Push Data to MySQL
+                    </button>
+                </form>
+
+                <form action="{{ url_for('load_from_mysql_route') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-primary btn-sm" title="Load records from MySQL database into application">
+                        ⬇️ Load from MySQL
+                    </button>
+                </form>
+
+                <form action="{{ url_for('reset_data_route') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-outline btn-sm" title="Reset dataset back to built-in sample CSV">
+                        🔄 Reset to Sample CSV
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

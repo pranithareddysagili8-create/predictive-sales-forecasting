@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Sales Forecasting | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Predictive Sales Forecasting</h1>
+        <p class="page-desc">Generate statistical forecasts using Moving Average Baseline and Scikit-Learn Linear Regression.</p>
+    </div>
+    <div class="header-actions">
+        <a href="{{ url_for('evaluation_page') }}" class="btn btn-secondary">
+            <span>🎯</span> Model Evaluation &rarr;
+        </a>
+        <a href="{{ url_for('reports_page') }}" class="btn btn-primary">
+            <span>📑</span> View Full Report
+        </a>
+    </div>
+</div>
+
+<!-- Forecast Parameters Form Card -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">⚙️ Forecasting Model Configuration</h2>
+        <span class="badge badge-primary">Mathematical Modeling</span>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('generate_forecast_route') }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; align-items: flex-end;">
+            
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="method">Algorithm / Method:</label>
+                <select name="method" id="method" class="form-select" onchange="toggleWindowField(this.value)">
+                    <option value="both" {% if method == 'both' %}selected{% endif %}>Compare Both (MA + Linear Regression)</option>
+                    <option value="ma" {% if method == 'ma' %}selected{% endif %}>Simple Moving Average (Baseline)</option>
+                    <option value="linear_regression" {% if method == 'linear_regression' %}selected{% endif %}>Scikit-Learn Linear Regression</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="freq">Interval Aggregation:</label>
+                <select name="freq" id="freq" class="form-select">
+                    <option value="D" {% if freq == 'D' %}selected{% endif %}>Daily Sales</option>
+                    <option value="M" {% if freq == 'M' %}selected{% endif %}>Monthly Sales</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="horizon">Forecast Horizon:</label>
+                <select name="horizon" id="horizon" class="form-select">
+                    <option value="7" {% if horizon == 7 %}selected{% endif %}>Next 7 Periods (e.g. 7 Days)</option>
+                    <option value="14" {% if horizon == 14 %}selected{% endif %}>Next 14 Periods (e.g. 2 Weeks)</option>
+                    <option value="30" {% if horizon == 30 %}selected{% endif %}>Next 30 Periods (e.g. 1 Month)</option>
+                    <option value="60" {% if horizon == 60 %}selected{% endif %}>Next 60 Periods (e.g. 2 Months)</option>
+                    <option value="90" {% if horizon == 90 %}selected{% endif %}>Next 90 Periods (e.g. 1 Quarter)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="windowGroup" style="margin-bottom: 0;">
+                <label class="form-label" for="window">MA Window Size (Periods):</label>
+                <select name="window" id="window" class="form-select">
+                    <option value="3" {% if window == 3 %}selected{% endif %}>3 Periods (Fast responsive)</option>
+                    <option value="7" {% if window == 7 %}selected{% endif %}>7 Periods (Weekly smoothing)</option>
+                    <option value="14" {% if window == 14 %}selected{% endif %}>14 Periods (Bi-weekly smoothing)</option>
+                    <option value="30" {% if window == 30 %}selected{% endif %}>30 Periods (Long-term smoothing)</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 0;">
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                    <span>🔮</span> Run Forecast
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Visualization: Actual vs Historical Fit vs Future Horizon -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <span>📊</span> Forecast Trajectory &amp; Historical Fit Chart
+        </h2>
+        <div>
+            {% if lr_res and lr_res.equation %}
+                <span class="badge badge-success" style="font-family: monospace;">{{ lr_res.equation }} (R² = {{ lr_res.r2_score }})</span>
+            {% endif %}
+            <span class="badge badge-primary">Horizon: {{ horizon }} {{ 'Months' if freq == 'M' else 'Days' }}</span>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if forecast_chart %}
+            <div class="chart-wrapper">
+                <img src="data:image/png;base64,{{ forecast_chart }}" alt="Sales Forecast Chart" class="chart-img">
+            </div>
+        {% else %}
+            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No forecast generated.</p>
+        {% endif %}
+
+        <div style="margin-top: 1.25rem; font-size: 0.85rem; color: #64748b; background-color: #f8fafc; padding: 0.85rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <strong>📌 Methodological Notice:</strong> 
+            The yellow shaded region indicates future projected periods. The dashed/dotted lines in the unshaded region show how well the models trace historical actuals. Future predictions represent mathematical extrapolations based on past demand velocity and trend slopes.
+        </div>
+    </div>
+</div>
+
+<!-- Forecast Results Table & Save Options -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <span>📋</span> Projected Sales Revenue by Future Period
+        </h2>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <form action="{{ url_for('save_forecasts_to_mysql_route') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="method" value="{{ method }}">
+                <input type="hidden" name="freq" value="{{ freq }}">
+                <input type="hidden" name="horizon" value="{{ horizon }}">
+                <input type="hidden" name="window" value="{{ window }}">
+                <button type="submit" class="btn btn-sm btn-success" title="Persist these forecast results into MySQL database">
+                    💾 Save Predictions to MySQL
+                </button>
+            </form>
+            <a href="{{ url_for('download_forecast_csv') }}" class="btn btn-sm btn-secondary">
+                📥 Export Forecast CSV
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if forecast_table %}
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Period (#)</th>
+                            <th>Future Projected Date</th>
+                            {% if ma_res %}
+                                <th>Moving Average (${{ window }}-period)</th>
+                            {% endif %}
+                            {% if lr_res %}
+                                <th>Linear Regression Trend</th>
+                            {% endif %}
+                            <th>Estimated Daily Range (±10%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in forecast_table %}
+                        <tr>
+                            <td><strong>#{{ loop.index }}</strong></td>
+                            <td><strong>{{ row.date }}</strong></td>
+                            {% if ma_res %}
+                                <td style="color: #d97706; font-weight: 600;">${{ "{:,.2f}".format(row.ma_pred) }}</td>
+                            {% endif %}
+                            {% if lr_res %}
+                                <td style="color: #059669; font-weight: 600;">${{ "{:,.2f}".format(row.lr_pred) }}</td>
+                            {% endif %}
+                            <td style="color: #64748b; font-size: 0.82rem;">
+                                ${{ "{:,.2f}".format(row.primary_val * 0.90) }} &mdash; ${{ "{:,.2f}".format(row.primary_val * 1.10) }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Forecast Cumulative Summary -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                <div style="background-color: #eff6ff; padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+                    <div style="font-size: 0.8rem; color: #1e40af; font-weight: 600;">Projected Cumulative Horizon Revenue</div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: #1e3a8a; margin-top: 0.25rem;">
+                        ${{ "{:,.2f}".format(total_projected) }}
+                    </div>
+                </div>
+
+                <div style="background-color: #ecfdf5; padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+                    <div style="font-size: 0.8rem; color: #065f46; font-weight: 600;">Expected Average / Period</div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: #047857; margin-top: 0.25rem;">
+                        ${{ "{:,.2f}".format(avg_projected) }}
+                    </div>
+                </div>
+
+                <div style="background-color: #fef3c7; padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+                    <div style="font-size: 0.8rem; color: #92400e; font-weight: 600;">Model Employed</div>
+                    <div style="font-size: 1.15rem; font-weight: 700; color: #78350f; margin-top: 0.4rem;">
+                        {% if method == 'both' %}MA ({{ window }}) &amp; Linear Reg{% elif method == 'ma' %}Moving Average ({{ window }}){% else %}Linear Regression{% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function toggleWindowField(val) {
+    var grp = document.getElementById('windowGroup');
+    if (val === 'linear_regression') {
+        grp.style.opacity = '0.4';
+    } else {
+        grp.style.opacity = '1.0';
+    }
+}
+</script>
+{% endblock %}

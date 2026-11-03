@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Executive Sales Report | Sales Forecasting & Business Analytics System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Executive Forecasting &amp; Analytics Report</h1>
+        <p class="page-desc">Comprehensive project summary suitable for management briefings and academic project evaluation.</p>
+    </div>
+    <div class="header-actions no-print">
+        <button onclick="window.print();" class="btn btn-primary">
+            <span>🖨️</span> Print / Save PDF
+        </button>
+        <a href="{{ url_for('download_forecast_csv') }}" class="btn btn-secondary">
+            <span>📥</span> Download Predictions CSV
+        </a>
+    </div>
+</div>
+
+<!-- Report Summary Document Card -->
+<div class="card" style="padding: 1.5rem; background-color: #ffffff;">
+    
+    <!-- Report Header Banner -->
+    <div style="border-bottom: 2px solid #0f172a; padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.02em;">
+                Sales Forecasting &amp; Business Intelligence Audit Report
+            </h2>
+            <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.25rem;">
+                System Generated Audit &bull; Generated from Active Dataset: <strong>{{ summary.source_info.name }}</strong>
+            </p>
+        </div>
+        <div style="text-align: right; font-size: 0.85rem; color: #475569;">
+            <div><strong>Report Scope:</strong> {{ summary.date_min }} to {{ summary.date_max }}</div>
+            <div><strong>Audit Status:</strong> Verified &bull; {{ summary.record_count }} Transactions</div>
+        </div>
+    </div>
+
+    <!-- Section 1: Dataset Summary -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;">
+            1. Historical Sales Performance Summary
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Total Historical Revenue</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem;">${{ "{:,.2f}".format(summary.total_revenue) }}</div>
+            </div>
+            <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Total Units Sold</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem;">{{ "{:,}".format(summary.total_quantity) }}</div>
+            </div>
+            <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Average Transaction Value</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem;">${{ "{:,.2f}".format(summary.avg_order_value) }}</div>
+            </div>
+            <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Product Portfolio</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem;">{{ summary.product_count }} SKUs in {{ summary.category_count }} Categories</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Forecasting Methodology & Error Metrics -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;">
+            2. Forecasting Methodology &amp; Validation Metrics
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                <h4 style="font-size: 0.95rem; color: #1e293b; font-weight: 700; margin-bottom: 0.4rem;">
+                    Baseline Model: Simple Moving Average (SMA)
+                </h4>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem;">
+                    Evaluated on chronological holdout test set with rolling window = {{ eval_res.window if eval_res else 7 }} periods.
+                </p>
+                {% if eval_res and eval_res.success %}
+                <div style="font-size: 0.82rem; color: #334155;">
+                    <div>&bull; <strong>MAE:</strong> ${{ "{:,.2f}".format(eval_res.ma_metrics.mae) }}</div>
+                    <div>&bull; <strong>RMSE:</strong> ${{ "{:,.2f}".format(eval_res.ma_metrics.rmse) }}</div>
+                    <div>&bull; <strong>MAPE:</strong> {{ eval_res.ma_metrics.mape }}%</div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                <h4 style="font-size: 0.95rem; color: #1e293b; font-weight: 700; margin-bottom: 0.4rem;">
+                    Advanced Model: Scikit-Learn Linear Regression
+                </h4>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem;">
+                    Evaluated on the exact same holdout test set to ensure direct scientific parity.
+                </p>
+                {% if eval_res and eval_res.success %}
+                <div style="font-size: 0.82rem; color: #334155;">
+                    <div>&bull; <strong>MAE:</strong> ${{ "{:,.2f}".format(eval_res.lr_metrics.mae) }}</div>
+                    <div>&bull; <strong>RMSE:</strong> ${{ "{:,.2f}".format(eval_res.lr_metrics.rmse) }}</div>
+                    <div>&bull; <strong>MAPE:</strong> {{ eval_res.lr_metrics.mape }}%</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if eval_res and eval_res.success %}
+        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 0.85rem 1rem; border-radius: var(--radius-sm); font-size: 0.88rem; color: #166534;">
+            <strong>Comparative Finding:</strong> {{ eval_res.win_reason }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Section 3: Visual Analytics Chart -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;">
+            3. Actual vs Forecast Trajectory Graph
+        </h3>
+        {% if forecast_chart %}
+            <div class="chart-wrapper">
+                <img src="data:image/png;base64,{{ forecast_chart }}" alt="Forecast Trajectory" class="chart-img">
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Section 4: Future Predicted Values Table -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;">
+            4. Future Period Projections (Horizon: {{ horizon }} Periods)
+        </h3>
+        {% if forecast_table %}
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Future Period</th>
+                            <th>Projected Date</th>
+                            {% if ma_res %}<th>Moving Average ($)</th>{% endif %}
+                            {% if lr_res %}<th>Linear Regression ($)</th>{% endif %}
+                            <th>Projected Confidence Band (±10%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in forecast_table %}
+                        <tr>
+                            <td><strong>#{{ loop.index }}</strong></td>
+                            <td>{{ row.date }}</td>
+                            {% if ma_res %}
+                                <td style="color: #d97706; font-weight: 600;">${{ "{:,.2f}".format(row.ma_pred) }}</td>
+                            {% endif %}
+                            {% if lr_res %}
+                                <td style="color: #059669; font-weight: 600;">${{ "{:,.2f}".format(row.lr_pred) }}</td>
+                            {% endif %}
+                            <td style="color: #64748b;">
+                                ${{ "{:,.2f}".format(row.primary_val * 0.90) }} &mdash; ${{ "{:,.2f}".format(row.primary_val * 1.10) }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Section 5: Data Limitations & Business Assumptions -->
+    <div style="margin-bottom: 1rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;">
+            5. Business Assumptions &amp; Analytical Limitations
+        </h3>
+        <div style="font-size: 0.86rem; color: #475569; line-height: 1.6; background-color: #f8fafc; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <ul style="padding-left: 1.25rem;">
+                <li style="margin-bottom: 0.4rem;">
+                    <strong>Assumption of Trend Continuity:</strong> The linear regression and moving average models assume that historical purchasing velocity and customer acquisition rates will continue into the forecast horizon without structural disruption.
+                </li>
+                <li style="margin-bottom: 0.4rem;">
+                    <strong>Exogenous Market Factors:</strong> The models do not account for external macroeconomic shocks, aggressive competitor pricing, supply chain bottlenecks, or sudden inflationary pressures.
+                </li>
+                <li style="margin-bottom: 0.4rem;">
+                    <strong>Zero-Sale Imputation:</strong> Any calendar days or months with no recorded transactions are imputed as zero sales to preserve time-series regularity.
+                </li>
+                <li>
+                    <strong>Forecast Non-Guarantee:</strong> Future projections represent statistical approximations and expected values. Management should utilize these figures as decision support rather than deterministic guarantees.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
